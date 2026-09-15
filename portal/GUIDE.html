@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Setup guide | Framework lab</title>
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      main {
+        max-width: 850px;
+        margin: auto;
+        padding: 30px 24px;
+      }
+      h1 {
+        font-size: 40px;
+      }
+      h2 {
+        margin-top: 44px;
+      }
+      li {
+        line-height: 1.8;
+        margin: 10px 0;
+      }
+      code {
+        overflow-wrap: anywhere;
+      }
+      table {
+        display: block;
+        overflow: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a href="./">← Framework lab</a>
+      <h1>The Nesavu Framework Lab</h1>
+      <p>
+        Five real apps, one small learning playground, one GitHub Pages
+        deployment.
+      </p>
+      <p>
+        The same illustrative product demo is implemented independently in
+        React, Next.js, Vue, Svelte and Angular. It includes a quantity selector
+        (1–10), size selection, computed total, reset button, code examples and
+        a comparison homepage. No API keys, external product images or database
+        are needed. This is an educational demo, not a production shop.
+      </p>
+      <h2>Upload to GitHub and publish</h2>
+      <ol>
+        <li>
+          Extract the ZIP on your computer. GitHub does not unpack an uploaded
+          ZIP.
+        </li>
+        <li>
+          Create a <strong>public</strong> GitHub repository with the default
+          branch named <strong>main</strong>. Any repository name is fine.
+          Initialize it with a README so Settings is available.
+        </li>
+        <li>
+          Open
+          <strong
+            >Settings → Pages → Build and deployment → Source → GitHub
+            Actions</strong
+          >.
+        </li>
+        <li>
+          Return to <strong>Code → Add file → Upload files</strong>. Upload the
+          extracted contents to the repository root, then commit to
+          <code>main</code>. <code>package.json</code>,
+          <code>package-lock.json</code>, <code>apps/</code>,
+          <code>portal/</code> and <code>scripts/</code> must be directly at the
+          root, not inside an extra folder.
+        </li>
+        <li>
+          Ensure <code>.github/workflows/deploy.yml</code> is present. It is
+          included in the ZIP. macOS Finder may hide dot folders; press
+          <strong>Command + Shift + .</strong> to show them. If the uploader
+          skips it, choose <strong>Add file → Create new file</strong>, enter
+          <code>.github/workflows/deploy.yml</code>, and paste the full contents
+          of the included <code>DEPLOY-WORKFLOW.txt</code>. Commit it.
+        </li>
+        <li>
+          Open <strong>Actions → Build and deploy framework lab</strong> and
+          wait for it to finish. If it ran before Pages was enabled, use
+          <strong>Re-run all jobs</strong>. You can also select
+          <strong>Run workflow</strong>.
+        </li>
+        <li>
+          Open the deployment URL shown in the successful workflow, or use
+          <strong>Settings → Pages → Visit site</strong>.
+        </li>
+      </ol>
+      <p>
+        Your URL will normally be
+        <code>https://YOUR-USERNAME.github.io/YOUR-REPO/</code>. The workflow
+        detects the Pages base path automatically. No repository-name
+        replacement is necessary. Do not use
+        <strong>Deploy from a branch</strong> for these source files: the five
+        apps require a build first.
+      </p>
+      <p>
+        GitHub&#39;s one-time Pages setting and the initial upload still require
+        your action. Every later commit to <code>main</code> rebuilds and
+        republishes automatically. Build errors prevent a new deployment; check
+        the first failed Actions step.
+      </p>
+      <h2>Run everything locally</h2>
+      <p>
+        Install Node.js <strong>24 LTS</strong> (npm included), then open a
+        terminal in the extracted folder:
+      </p>
+      <pre><code class="language-bash">npm ci
+npm run build
+npm run preview
+</code></pre>
+      <p>
+        Visit <code>http://localhost:4173/</code>. Stop with Ctrl+C. Use an HTTP
+        server, not a double-clicked HTML file, for the compiled apps.
+      </p>
+      <p>To work on just one framework:</p>
+      <pre><code class="language-bash">npm run dev:react
+npm run dev:next
+npm run dev:vue
+npm run dev:svelte
+npm run dev:angular
+</code></pre>
+      <p>
+        Run one command at a time and use the URL printed in the terminal. In
+        individual development mode, the component&#39;s cross-app/source links
+        are available only in the combined built preview. Framework navigation
+        is designed for the combined deployment.
+      </p>
+      <h2>Where to edit</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>App</th>
+            <th>Main code</th>
+            <th>UI style</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>React</td>
+            <td><code>apps/react/src/App.jsx</code></td>
+            <td><code>apps/react/style.css</code></td>
+          </tr>
+          <tr>
+            <td>Next.js</td>
+            <td><code>apps/next/app/page.jsx</code></td>
+            <td><code>apps/next/style.css</code></td>
+          </tr>
+          <tr>
+            <td>Vue</td>
+            <td><code>apps/vue/src/App.vue</code></td>
+            <td><code>apps/vue/style.css</code></td>
+          </tr>
+          <tr>
+            <td>Svelte</td>
+            <td><code>apps/svelte/src/App.svelte</code></td>
+            <td><code>apps/svelte/style.css</code></td>
+          </tr>
+          <tr>
+            <td>Angular</td>
+            <td>
+              <code>apps/angular/src/main.ts</code> and
+              <code>apps/angular/src/app.html</code>
+            </td>
+            <td><code>apps/angular/style.css</code></td>
+          </tr>
+          <tr>
+            <td>Comparison homepage</td>
+            <td>
+              <code>portal/index.html</code> and <code>portal/portal.js</code>
+            </td>
+            <td><code>portal/style.css</code></td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        Each implementation owns its state and event handling. Shared appearance
+        is intentional. A static HTML homepage links to five separately bundled
+        apps; this is not one production app loading all five frameworks into a
+        shared component tree.
+      </p>
+      <h2>Learn by changing something</h2>
+      <ol>
+        <li>
+          Try each demo: increase quantity, change size, reset. Note the
+          identical result.
+        </li>
+        <li>
+          Read each component&#39;s state code. React and Next use
+          <code>useState</code>; Vue uses <code>ref</code>; Svelte uses
+          <code>$state</code>; Angular uses <code>signal</code>.
+        </li>
+        <li>
+          Rename the product in just one app. Commit and watch the deployment.
+          Only that app&#39;s title should change.
+        </li>
+        <li>
+          Change the price: update both the <code>1290</code> calculation and
+          the displayed <code>₹1,290</code> unit price.
+        </li>
+        <li>
+          Change the quantity limit from 10 to 5: update the increment clamp,
+          disabled condition and visible limit label.
+        </li>
+        <li>
+          Compare page source, not just the Elements panel: Next&#39;s exported
+          HTML contains the rendered product. These React/Vue/Svelte/Angular
+          demos render their product in the browser. Other rendering modes exist
+          in their ecosystems.
+        </li>
+        <li>
+          Add a second product after you understand the first. This is a good
+          point to extract a reusable component with input properties.
+        </li>
+      </ol>
+      <p>
+        These demos show component syntax, local reactive state, events, derived
+        values and static deployment. They do not benchmark performance or
+        demonstrate authentication, databases, server rendering per request or
+        framework routers.
+      </p>
+      <h2>Why Next.js is different here</h2>
+      <p>
+        React is a UI library. Next.js is a framework built on React. Its
+        interactive page uses React state, while its build creates static HTML
+        with <code>output: &#39;export&#39;</code>. GitHub Pages serves static
+        files and cannot run a Next.js server, server actions or request-time
+        rendering. To explore those features later, use a host that supports a
+        Next.js server.
+      </p>
+      <h2>Repository structure</h2>
+      <ul>
+        <li><code>apps/</code>: the five actual framework projects.</li>
+        <li>
+          <code>portal/</code>: homepage, styles and browser-readable learning
+          guide.
+        </li>
+        <li>
+          <code>scripts/build.mjs</code>: builds apps into
+          <code>dist/react</code>, <code>dist/next</code>,
+          <code>dist/vue</code>, <code>dist/svelte</code>,
+          <code>dist/angular</code> and copies the homepage and readable source
+          examples.
+        </li>
+        <li>
+          <code>scripts/serve.mjs</code>: local preview server, only listening
+          on your computer.
+        </li>
+        <li>
+          <code>.github/workflows/deploy.yml</code>: installs locked
+          dependencies, builds and publishes.
+        </li>
+        <li>
+          <code>package-lock.json</code>: exact resolved versions; use
+          <code>npm ci</code> for repeatable installation.
+        </li>
+        <li>
+          <code>DEPLOY-WORKFLOW.txt</code>: visible backup of the workflow for
+          browser uploading.
+        </li>
+      </ul>
+      <h2>Troubleshooting</h2>
+      <ul>
+        <li>
+          <strong>No workflow listed:</strong>
+          <code>.github/workflows/deploy.yml</code> was not uploaded at the
+          repository root.
+        </li>
+        <li>
+          <strong>Pages configuration error:</strong> choose GitHub Actions in
+          Settings → Pages, then rerun.
+        </li>
+        <li>
+          <strong>No run after upload:</strong> verify the branch is
+          <code>main</code>, or edit the workflow branch to match your default
+          branch.
+        </li>
+        <li>
+          <strong>Missing package file:</strong> the project is nested inside an
+          extra folder. Move its contents to the repository root.
+        </li>
+        <li>
+          <strong>Blank app or asset 404:</strong> do not hand-edit the base
+          path. Keep the supplied build script and configure-pages step
+          together, and rebuild after changing repository name or domain.
+        </li>
+        <li>
+          <strong>npm ci fails after editing dependencies:</strong> run
+          <code>npm install</code> locally to update
+          <code>package-lock.json</code>, then commit both package files.
+        </li>
+        <li>
+          <strong>Unknown Node version or Angular build failure:</strong> use
+          Node 24 and install dependencies from the repository root.
+        </li>
+        <li>
+          <strong>GitHub Desktop alternative:</strong> clone the repository,
+          copy the extracted contents including <code>.github</code>, commit and
+          push to <code>main</code>.
+        </li>
+      </ul>
+      <h2>Official references</h2>
+      <ul>
+        <li><a href="https://react.dev/learn">React learning guide</a></li>
+        <li>
+          <a href="https://nextjs.org/docs/app/guides/static-exports"
+            >Next.js static exports</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://vuejs.org/guide/essentials/reactivity-fundamentals.html"
+            >Vue reactivity</a
+          >
+        </li>
+        <li>
+          <a href="https://svelte.dev/docs/svelte/$state">Svelte state</a>
+        </li>
+        <li><a href="https://angular.dev/guide/signals">Angular signals</a></li>
+        <li>
+          <a href="https://vite.dev/guide/static-deploy"
+            >Vite deployment to GitHub Pages</a
+          >
+        </li>
+        <li>
+          <a href="https://angular.dev/reference/versions"
+            >Angular version compatibility</a
+          >
+        </li>
+      </ul>
+    </main>
+  </body>
+</html>

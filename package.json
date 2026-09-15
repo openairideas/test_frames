@@ -1,0 +1,20 @@
+{
+  "name": "nesavu-framework-lab",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs",
+    "dev:react": "npm run dev -w apps/react",
+    "dev:next": "npm run dev -w apps/next",
+    "dev:vue": "npm run dev -w apps/vue",
+    "dev:svelte": "npm run dev -w apps/svelte",
+    "dev:angular": "npm run dev -w apps/angular"
+  }
+}

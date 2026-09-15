@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Explore the same interactive demo built with React, Next.js, Vue, Svelte and Angular."
+    />
+    <title>Framework lab | The Nesavu</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="top">
+        <a class="brand" href="./"><b>n.</b>The Nesavu / Framework lab</a
+        ><span class="tag">BUILD · EXPERIMENT · UNDERSTAND</span>
+      </header>
+      <section class="hero">
+        <span class="pill">A hands-on playground for the web</span>
+        <h1>Five ways to build.<br />One place to explore.</h1>
+        <p>
+          Click through the same little shop, built with five different
+          technologies. Try the controls, read the code, and see what changes
+          behind the screen.
+        </p>
+      </section>
+      <div class="grid">
+        <article class="card">
+          <div class="mark">R</div>
+          <h2>React</h2>
+          <div class="meta">01 / UI library</div>
+          <p>
+            Build interfaces from reusable components. State updates trigger
+            React to render the next UI.
+          </p>
+          <span class="small">useState</span
+          ><a class="link" href="./react/"
+            ><span>Open React demo</span><span>↗</span></a
+          >
+        </article>
+        <article class="card">
+          <div class="mark">N</div>
+          <h2>Next.js</h2>
+          <div class="meta">02 / React framework</div>
+          <p>
+            Adds routing and rendering tools around React. This example
+            generates HTML at build time.
+          </p>
+          <span class="small">useState + static export</span
+          ><a class="link" href="./next/"
+            ><span>Open Next.js demo</span><span>↗</span></a
+          >
+        </article>
+        <article class="card">
+          <div class="mark">V</div>
+          <h2>Vue</h2>
+          <div class="meta">03 / Progressive framework</div>
+          <p>
+            Keep template, logic and styles in a single component, with reactive
+            values driving the UI.
+          </p>
+          <span class="small">ref + computed</span
+          ><a class="link" href="./vue/"
+            ><span>Open Vue demo</span><span>↗</span></a
+          >
+        </article>
+        <article class="card">
+          <div class="mark">S</div>
+          <h2>Svelte</h2>
+          <div class="meta">04 / Compiler-based framework</div>
+          <p>
+            Write components that are compiled into JavaScript. Runes declare
+            reactive state and derived values.
+          </p>
+          <span class="small">$state + $derived</span
+          ><a class="link" href="./svelte/"
+            ><span>Open Svelte demo</span><span>↗</span></a
+          >
+        </article>
+        <article class="card">
+          <div class="mark">A</div>
+          <h2>Angular</h2>
+          <div class="meta">05 / Full framework</div>
+          <p>
+            Use TypeScript components, templates and signals, with an integrated
+            set of application tools.
+          </p>
+          <span class="small">signal + computed</span
+          ><a class="link" href="./angular/"
+            ><span>Open Angular demo</span><span>↗</span></a
+          >
+        </article>
+        <article class="card" style="background: #174e45; color: white">
+          <span class="tag" style="color: #a4cfc0">THE EXPERIMENT</span>
+          <h2>One interface.<br />Five implementations.</h2>
+          <p style="color: #c3d9d1">
+            Same product. Same controls. Same styling. The difference is in the
+            code that makes it work.
+          </p>
+          <a class="link" href="#compare"
+            >Compare the approach <span>↓</span></a
+          >
+        </article>
+      </div>
+      <section class="section" id="playground">
+        <span class="tag">TRY IT HERE</span>
+        <h2>Your framework workbench</h2>
+        <p>
+          Switch between real, independent apps. Open a demo above to test it on
+          its own page.
+        </p>
+        <div class="tabs" aria-label="Select framework">
+          <button type="button" data-framework="react" aria-pressed="true">
+            React</button
+          ><button type="button" data-framework="next" aria-pressed="false">
+            Next.js</button
+          ><button type="button" data-framework="vue" aria-pressed="false">
+            Vue</button
+          ><button type="button" data-framework="svelte" aria-pressed="false">
+            Svelte</button
+          ><button type="button" data-framework="angular" aria-pressed="false">
+            Angular
+          </button>
+        </div>
+        <p class="status" id="status" aria-live="polite">
+          React selected. Each switch loads a fresh demo.
+        </p>
+        <iframe
+          src="./react/"
+          title="React interactive demo"
+          loading="lazy"
+        ></iframe>
+      </section>
+      <section class="section" id="compare">
+        <span class="tag">READ THE DIFFERENCE</span>
+        <h2>What are you actually comparing?</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Technology</th>
+                <th>State in this demo</th>
+                <th>Start editing</th>
+                <th>Rendering in this setup</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>React</th>
+                <td>useState</td>
+                <td><code>src/App.jsx</code></td>
+                <td>Browser renders the app from JavaScript</td>
+              </tr>
+              <tr>
+                <th>Next.js</th>
+                <td>useState + static export</td>
+                <td><code>app/page.jsx</code></td>
+                <td>HTML generated at build time, then React hydration</td>
+              </tr>
+              <tr>
+                <th>Vue</th>
+                <td>ref + computed</td>
+                <td><code>src/App.vue</code></td>
+                <td>Browser renders the app from JavaScript</td>
+              </tr>
+              <tr>
+                <th>Svelte</th>
+                <td>$state + $derived</td>
+                <td><code>src/App.svelte</code></td>
+                <td>Browser renders the app from JavaScript</td>
+              </tr>
+              <tr>
+                <th>Angular</th>
+                <td>signal + computed</td>
+                <td><code>src/main.ts</code></td>
+                <td>Browser renders the app from JavaScript</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small">
+          React is a UI library. Next.js builds on React. This table describes
+          these demos, not every rendering option available in each ecosystem.
+          Identical appearance does not imply identical architecture or
+          performance.
+        </p>
+      </section>
+      <section class="section note">
+        <strong>Your first experiment</strong>
+        <p>
+          Open a component, rename “Everyday festive kurta”, then commit your
+          change to GitHub. The included workflow rebuilds all five apps and
+          publishes them together. Next, change the price from 1290 in both the
+          calculation and displayed unit price.
+        </p>
+        <a href="./GUIDE.html">Read the setup &amp; learning guide ↗</a>
+      </section>
+      <footer>
+        THE NESAVU · Framework lab · Illustrative products, no real
+        transactions.
+      </footer>
+    </div>
+    <script src="./portal.js" defer></script>
+  </body>
+</html>
